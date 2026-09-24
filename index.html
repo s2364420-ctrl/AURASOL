@@ -1,0 +1,3105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AURASOL | Beauty & Wellness</title>
+
+<meta name="description"
+content="AURASOL Beauty & Wellness Salon — elegance, beauty and self-care.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   AURASOL
+   LUXURY PINK + GOLD SALON WEBSITE
+========================================================= */
+
+:root {
+    --pink-dark: #7d3656;
+    --pink-deep: #632842;
+    --pink: #c96f91;
+    --pink-light: #f4c8d8;
+    --pink-pale: #fff1f6;
+
+    --gold: #c9a24d;
+    --gold-light: #e6cc85;
+
+    --cream: #fffaf5;
+    --white: #ffffff;
+    --dark: #2c2025;
+    --muted: #79666d;
+
+    --shadow:
+        0 20px 60px rgba(83, 35, 57, .13);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    color: var(--dark);
+    background: var(--cream);
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--gold);
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--pink-pale);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        var(--gold),
+        var(--pink)
+    );
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+section {
+    padding: 110px 8%;
+}
+
+.section-label {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--pink-dark);
+    font-size: clamp(44px, 5vw, 70px);
+    font-weight: 600;
+    line-height: .95;
+}
+
+.section-title span {
+    color: var(--gold);
+    font-style: italic;
+}
+
+.section-description {
+    max-width: 650px;
+    margin: 25px auto 0;
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+.intro-line {
+    width: 70px;
+    height: 1px;
+    background: var(--gold);
+    margin: 30px auto;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: .4s ease;
+}
+
+header.scrolled {
+    background: rgba(255, 250, 245, .96);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 5px 25px rgba(0,0,0,.08);
+}
+
+nav {
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+}
+
+.logo {
+    text-decoration: none;
+    color: white;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.logo span {
+    color: var(--gold-light);
+}
+
+header.scrolled .logo {
+    color: var(--pink-dark);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 34px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+header.scrolled .nav-links a {
+    color: var(--dark);
+}
+
+.nav-links a:hover {
+    color: var(--gold) !important;
+}
+
+.nav-button {
+    color: white;
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    padding: 13px 23px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+header.scrolled .nav-button {
+    color: var(--pink-dark);
+}
+
+.nav-button:hover {
+    background: var(--gold);
+    color: white !important;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(70, 25, 45, .90),
+            rgba(150, 63, 98, .55)
+        ),
+        url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=2200&q=90")
+        center/cover;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border: 1px solid rgba(230,204,133,.45);
+    border-radius: 50%;
+    right: -180px;
+    top: 130px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(230,204,133,.25);
+    border-radius: 50%;
+    right: -80px;
+    top: 230px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-left: 8%;
+    max-width: 850px;
+    color: white;
+}
+
+.hero-small {
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 5px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(80px, 11vw, 150px);
+    line-height: .75;
+    font-weight: 500;
+    letter-spacing: -4px;
+}
+
+.hero h1 span {
+    display: block;
+    margin-left: 80px;
+    color: var(--gold-light);
+    font-style: italic;
+}
+
+.hero p {
+    max-width: 550px;
+    margin: 40px 0;
+    line-height: 1.9;
+    font-size: 14px;
+    color: #ffeef5;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 30px;
+    border: none;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.btn-gold {
+    background: var(--gold);
+    color: white;
+}
+
+.btn-gold:hover {
+    background: #a98335;
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    color: white;
+    border: 1px solid rgba(255,255,255,.7);
+}
+
+.btn-outline:hover {
+    background: white;
+    color: var(--pink-dark);
+}
+
+.scroll-down {
+    position: absolute;
+    z-index: 2;
+    bottom: 30px;
+    left: 8%;
+    color: white;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+    text-align: center;
+    background: var(--cream);
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services {
+    background: var(--pink-pale);
+    text-align: center;
+}
+
+.services-grid {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.service-card {
+    background: white;
+    padding: 45px 30px;
+    border: 1px solid #efd7df;
+    position: relative;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--pink),
+        var(--gold)
+    );
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: .4s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-icon {
+    width: 65px;
+    height: 65px;
+    margin: auto auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--pink-pale);
+    border: 1px solid var(--gold-light);
+    color: var(--gold);
+    font-size: 26px;
+}
+
+.service-card h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 30px;
+    color: var(--pink-dark);
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.service-price {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-images {
+    min-height: 600px;
+    position: relative;
+}
+
+.gold-frame {
+    position: absolute;
+    width: 75%;
+    height: 520px;
+    top: 25px;
+    left: 25px;
+    border: 1px solid var(--gold);
+}
+
+.about-main-image {
+    position: absolute;
+    z-index: 1;
+    width: 75%;
+    height: 520px;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+}
+
+.about-small-image {
+    position: absolute;
+    z-index: 2;
+    width: 45%;
+    height: 260px;
+    object-fit: cover;
+    right: 0;
+    bottom: 0;
+    border: 12px solid white;
+}
+
+.about-content p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+    margin-top: 25px;
+}
+
+.about-list {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.about-list li {
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.about-list li::before {
+    content: "✦";
+    color: var(--gold);
+    margin-right: 12px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+    background:
+        linear-gradient(
+            rgba(110,40,70,.92),
+            rgba(110,40,70,.92)
+        ),
+        url("https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1800&q=80")
+        center/cover;
+
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    text-align: center;
+    color: white;
+    padding: 75px 8%;
+}
+
+.stat h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 55px;
+    color: var(--gold-light);
+}
+
+.stat p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   PRICING
+========================================================= */
+
+.pricing {
+    text-align: center;
+    background: var(--cream);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    margin-top: 60px;
+}
+
+.price-card {
+    background: white;
+    padding: 45px 35px;
+    border: 1px solid #ead7dc;
+    text-align: left;
+    transition: .3s;
+}
+
+.price-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.price-card.featured {
+    background: var(--pink-dark);
+    color: white;
+    transform: translateY(-15px);
+}
+
+.price-card.featured:hover {
+    transform: translateY(-20px);
+}
+
+.popular {
+    color: var(--gold-light);
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.price-card h3 {
+    color: var(--pink-dark);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 32px;
+}
+
+.price-card.featured h3 {
+    color: white;
+}
+
+.price {
+    color: var(--gold);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 50px;
+    margin: 15px 0 25px;
+}
+
+.price-card ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.price-card li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.price-card.featured li {
+    border-color: rgba(255,255,255,.15);
+}
+
+.price-card li::before {
+    content: "✓";
+    color: var(--gold);
+    margin-right: 10px;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.gallery-item {
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .7s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(110,40,70,.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: .4s;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    border: 1px solid var(--gold-light);
+    color: white;
+    padding: 12px 20px;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   TESTIMONIALS
+========================================================= */
+
+.testimonials {
+    text-align: center;
+    background: var(--pink-pale);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    margin-top: 60px;
+}
+
+.testimonial {
+    background: white;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(95,40,60,.06);
+}
+
+.stars {
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.testimonial p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 21px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.client {
+    color: var(--pink-dark);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   BOOKING
+========================================================= */
+
+.booking {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,241,246,.96),
+            rgba(255,250,245,.94)
+        ),
+        url("https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1800&q=80")
+        center/cover;
+}
+
+.booking-wrapper {
+    max-width: 1150px;
+    margin: auto;
+    background: white;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    box-shadow: var(--shadow);
+}
+
+.booking-info {
+    background: var(--pink-dark);
+    color: white;
+    padding: 60px 45px;
+}
+
+.booking-info h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 52px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.booking-info p {
+    color: #f6dce6;
+    line-height: 1.8;
+    font-size: 13px;
+    margin: 25px 0;
+}
+
+.contact-detail {
+    font-size: 12px;
+    line-height: 2;
+    margin-top: 25px;
+}
+
+.contact-detail strong {
+    color: var(--gold-light);
+}
+
+.booking-form {
+    padding: 60px 45px;
+}
+
+.booking-form h3 {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--pink-dark);
+    font-size: 37px;
+    margin-bottom: 30px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1/-1;
+}
+
+.form-group label {
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+    padding: 12px 5px;
+    background: transparent;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--gold);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.submit-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   BOOKING MESSAGE
+========================================================= */
+
+.booking-message {
+    display: none;
+    margin-top: 20px;
+    padding: 18px;
+    white-space: pre-line;
+    line-height: 1.7;
+    font-size: 12px;
+}
+
+.booking-message.success {
+    display: block;
+    background: #edf8f0;
+    border-left: 4px solid #4b9b63;
+    color: #356c46;
+}
+
+.booking-message.error {
+    display: block;
+    background: #fff0f0;
+    border-left: 4px solid #c05252;
+    color: #8e3535;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background: #291c22;
+    color: white;
+    padding: 75px 8% 25px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.footer-logo {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 43px;
+    letter-spacing: 4px;
+}
+
+.footer-logo span {
+    color: var(--gold);
+}
+
+.footer-about {
+    color: #c8b8bd;
+    max-width: 300px;
+    font-size: 12px;
+    line-height: 1.9;
+    margin-top: 15px;
+}
+
+footer h4 {
+    color: var(--gold-light);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer li {
+    color: #c8b8bd;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--gold-light);
+}
+
+.copyright {
+    padding-top: 25px;
+    text-align: center;
+    color: #85757b;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: .8s ease;
+}
+
+.fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width: 950px) {
+
+    .nav-links,
+    .nav-button {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+        position: absolute;
+        top: 88px;
+        left: 0;
+        width: 100%;
+        padding: 30px;
+        flex-direction: column;
+        background: var(--pink-dark);
+        gap: 20px;
+    }
+
+    .services-grid,
+    .pricing-grid,
+    .testimonial-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .booking-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    section {
+        padding: 75px 6%;
+    }
+
+    .hero-content {
+        padding: 0 6%;
+    }
+
+    .hero h1 {
+        font-size: 80px;
+    }
+
+    .hero h1 span {
+        margin-left: 25px;
+    }
+
+    .services-grid,
+    .pricing-grid,
+    .testimonial-grid,
+    .stats,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-card.featured,
+    .price-card.featured:hover {
+        transform: none;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item {
+        height: 330px;
+    }
+
+    .about-images {
+        min-height: 420px;
+    }
+
+    .about-main-image,
+    .gold-frame {
+        width: 82%;
+        height: 370px;
+    }
+
+    .about-small-image {
+        height: 190px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .booking-info,
+    .booking-form {
+        padding: 40px 25px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header id="header">
+
+<nav>
+
+<a href="#home" class="logo">
+    AURA<span>SOL</span>
+</a>
+
+<ul class="nav-links" id="navLinks">
+
+<li>
+<a href="#home">Home</a>
+</li>
+
+<li>
+<a href="#services">Services</a>
+</li>
+
+<li>
+<a href="#about">About</a>
+</li>
+
+<li>
+<a href="#pricing">Packages</a>
+</li>
+
+<li>
+<a href="#gallery">Gallery</a>
+</li>
+
+<li>
+<a href="#booking">Book</a>
+</li>
+
+</ul>
+
+<a href="#booking" class="nav-button">
+BOOK NOW
+</a>
+
+<button
+class="menu-btn"
+id="menuBtn">
+☰
+</button>
+
+</nav>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="hero-small">
+BEAUTY • WELLNESS • YOU
+</div>
+
+<h1>
+Your
+<span>Aura.</span>
+</h1>
+
+<p>
+Welcome to AURASOL, a luxury beauty sanctuary
+created to make you feel confident, refreshed,
+and beautifully yourself.
+</p>
+
+<div class="hero-buttons">
+
+<a
+href="#booking"
+class="btn btn-gold">
+BOOK YOUR VISIT
+</a>
+
+<a
+href="#services"
+class="btn btn-outline">
+EXPLORE SERVICES
+</a>
+
+</div>
+
+</div>
+
+<div class="scroll-down">
+↓ &nbsp; DISCOVER AURASOL
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+<div class="section-label">
+WELCOME TO AURASOL
+</div>
+
+<h2 class="section-title">
+Beauty that <span>feels like you.</span>
+</h2>
+
+<div class="intro-line"></div>
+
+<p class="section-description">
+At AURASOL, beauty is more than appearance.
+It's confidence, self-care, and taking a moment
+to feel completely yourself.
+</p>
+
+</section>
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section
+class="services"
+id="services">
+
+<div class="section-label">
+OUR SERVICES
+</div>
+
+<h2 class="section-title">
+Designed for your <span>glow.</span>
+</h2>
+
+<div class="services-grid">
+
+
+<div class="service-card fade-up">
+
+<div class="service-icon">
+✂
+</div>
+
+<h3>
+Hair Studio
+</h3>
+
+<p>
+Personalized cuts, styling,
+treatments and beautiful
+transformations.
+</p>
+
+<div class="service-price">
+FROM $35
+</div>
+
+</div>
+
+
+<div class="service-card fade-up">
+
+<div class="service-icon">
+✦
+</div>
+
+<h3>
+Nail Atelier
+</h3>
+
+<p>
+Elegant manicures, detailed
+nail art, gel finishes and
+relaxing hand treatments.
+</p>
+
+<div class="service-price">
+FROM $25
+</div>
+
+</div>
+
+
+<div class="service-card fade-up">
+
+<div class="service-icon">
+♡
+</div>
+
+<h3>
+Skin Rituals
+</h3>
+
+<p>
+Rejuvenating facials and
+skincare rituals designed
+for a fresh natural glow.
+</p>
+
+<div class="service-price">
+FROM $45
+</div>
+
+</div>
+
+
+<div class="service-card fade-up">
+
+<div class="service-icon">
+❋
+</div>
+
+<h3>
+Lashes & Brows
+</h3>
+
+<p>
+Brow shaping, tinting,
+lash lifts and subtle
+enhancements.
+</p>
+
+<div class="service-price">
+FROM $30
+</div>
+
+</div>
+
+
+<div class="service-card fade-up">
+
+<div class="service-icon">
+☾
+</div>
+
+<h3>
+Relaxation
+</h3>
+
+<p>
+Calming treatments created
+to help you reset and
+recharge.
+</p>
+
+<div class="service-price">
+FROM $50
+</div>
+
+</div>
+
+
+<div class="service-card fade-up">
+
+<div class="service-icon">
+♕
+</div>
+
+<h3>
+Bridal Beauty
+</h3>
+
+<p>
+Complete beauty preparation
+packages for special
+occasions.
+</p>
+
+<div class="service-price">
+FROM $120
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+class="about"
+id="about">
+
+<div class="about-images fade-up">
+
+<div class="gold-frame"></div>
+
+<img
+class="about-main-image"
+src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85"
+alt="AURASOL salon">
+
+<img
+class="about-small-image"
+src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=85"
+alt="Beauty treatment">
+
+</div>
+
+
+<div class="about-content fade-up">
+
+<div class="section-label">
+OUR STORY
+</div>
+
+<h2 class="section-title">
+A space made for <span>you.</span>
+</h2>
+
+<p>
+AURASOL was created around one simple idea:
+everyone deserves a place where they can slow
+down, relax, and leave feeling amazing.
+</p>
+
+<p>
+Every detail is designed to create a warm,
+elegant and relaxing experience.
+</p>
+
+<ul class="about-list">
+
+<li>
+Personalized beauty experiences
+</li>
+
+<li>
+Professional salon specialists
+</li>
+
+<li>
+Relaxing luxury environment
+</li>
+
+<li>
+Quality treatments
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats">
+
+<div class="stat">
+<h3>8+</h3>
+<p>Years of Beauty</p>
+</div>
+
+<div class="stat">
+<h3>12K</h3>
+<p>Happy Clients</p>
+</div>
+
+<div class="stat">
+<h3>25+</h3>
+<p>Beauty Treatments</p>
+</div>
+
+<div class="stat">
+<h3>4.9</h3>
+<p>Client Rating</p>
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PRICING
+===================================================== -->
+
+<section
+class="pricing"
+id="pricing">
+
+<div class="section-label">
+SIGNATURE PACKAGES
+</div>
+
+<h2 class="section-title">
+Choose your <span>ritual.</span>
+</h2>
+
+<div class="pricing-grid">
+
+
+<div class="price-card fade-up">
+
+<h3>
+Essential Glow
+</h3>
+
+<div class="price">
+$65
+</div>
+
+<ul>
+
+<li>
+Signature Blowout
+</li>
+
+<li>
+Express Facial
+</li>
+
+<li>
+Classic Manicure
+</li>
+
+<li>
+Refreshment
+</li>
+
+</ul>
+
+<a
+href="#booking"
+class="btn btn-gold">
+SELECT
+</a>
+
+</div>
+
+
+<div class="price-card featured fade-up">
+
+<div class="popular">
+MOST LOVED
+</div>
+
+<h3>
+Aurasol Signature
+</h3>
+
+<div class="price">
+$120
+</div>
+
+<ul>
+
+<li>
+Luxury Hair Styling
+</li>
+
+<li>
+Signature Facial
+</li>
+
+<li>
+Gel Manicure
+</li>
+
+<li>
+Lash & Brow Styling
+</li>
+
+<li>
+Relaxation Ritual
+</li>
+
+</ul>
+
+<a
+href="#booking"
+class="btn btn-gold">
+SELECT
+</a>
+
+</div>
+
+
+<div class="price-card fade-up">
+
+<h3>
+Golden Occasion
+</h3>
+
+<div class="price">
+$180
+</div>
+
+<ul>
+
+<li>
+Full Hair Styling
+</li>
+
+<li>
+Luxury Facial
+</li>
+
+<li>
+Premium Manicure
+</li>
+
+<li>
+Lash Enhancement
+</li>
+
+<li>
+Occasion Makeup
+</li>
+
+</ul>
+
+<a
+href="#booking"
+class="btn btn-gold">
+SELECT
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section
+class="gallery"
+id="gallery">
+
+<div class="gallery-item">
+
+<img
+src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=900&q=85"
+alt="Salon interior">
+
+<div class="gallery-overlay">
+<span>AURASOL SPACE</span>
+</div>
+
+</div>
+
+
+<div class="gallery-item">
+
+<img
+src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=85"
+alt="Hair styling">
+
+<div class="gallery-overlay">
+<span>HAIR</span>
+</div>
+
+</div>
+
+
+<div class="gallery-item">
+
+<img
+src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=85"
+alt="Nails">
+
+<div class="gallery-overlay">
+<span>NAILS</span>
+</div>
+
+</div>
+
+
+<div class="gallery-item">
+
+<img
+src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85"
+alt="Facial">
+
+<div class="gallery-overlay">
+<span>SKIN</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     TESTIMONIALS
+===================================================== -->
+
+<section class="testimonials">
+
+<div class="section-label">
+CLIENT LOVE
+</div>
+
+<h2 class="section-title">
+Words from our <span>glow girls.</span>
+</h2>
+
+<div class="testimonial-grid">
+
+
+<div class="testimonial fade-up">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+“AURASOL feels like stepping into
+a little luxury escape. I always
+leave feeling refreshed.”
+</p>
+
+<div class="client">
+— SOPHIA M.
+</div>
+
+</div>
+
+
+<div class="testimonial fade-up">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+“The atmosphere is beautiful and
+the attention to detail is incredible.
+My favorite salon.”
+</p>
+
+<div class="client">
+— AMELIA R.
+</div>
+
+</div>
+
+
+<div class="testimonial fade-up">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+“Everything feels thoughtful and
+personal. It is the perfect place
+for a self-care day.”
+</p>
+
+<div class="client">
+— LAYLA K.
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     BOOKING SYSTEM
+===================================================== -->
+
+<section
+class="booking"
+id="booking">
+
+<div class="booking-wrapper">
+
+
+<!-- BOOKING INFORMATION -->
+
+<div class="booking-info">
+
+<div class="section-label">
+RESERVATIONS
+</div>
+
+<h2>
+Your glow
+starts here.
+</h2>
+
+<p>
+Choose your treatment, select a date,
+find an available time and request
+your appointment.
+</p>
+
+<div class="contact-detail">
+
+<strong>
+LOCATION
+</strong>
+
+<br>
+
+24 Rose Avenue,
+Beauty District
+
+</div>
+
+
+<div class="contact-detail">
+
+<strong>
+OPENING HOURS
+</strong>
+
+<br>
+
+Monday – Saturday:
+9:00 AM – 8:00 PM
+
+<br>
+
+Sunday:
+11:00 AM – 6:00 PM
+
+</div>
+
+
+<div class="contact-detail">
+
+<strong>
+PHONE
+</strong>
+
+<br>
+
++1 234 567 890
+
+</div>
+
+</div>
+
+
+<!-- BOOKING FORM -->
+
+<div class="booking-form">
+
+<h3>
+Book an Appointment
+</h3>
+
+
+<form id="bookingForm">
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Full Name
+</label>
+
+<input
+id="customerName"
+type="text"
+placeholder="Your name"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Email
+</label>
+
+<input
+id="customerEmail"
+type="email"
+placeholder="you@email.com"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Phone
+</label>
+
+<input
+id="customerPhone"
+type="tel"
+placeholder="Phone number"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Service
+</label>
+
+<select
+id="service"
+required>
+
+<option value="">
+Choose a service
+</option>
+
+<option value="Hair Studio">
+Hair Studio — $35+
+</option>
+
+<option value="Nail Atelier">
+Nail Atelier — $25+
+</option>
+
+<option value="Skin Rituals">
+Skin Rituals — $45+
+</option>
+
+<option value="Lashes & Brows">
+Lashes & Brows — $30+
+</option>
+
+<option value="Relaxation">
+Relaxation — $50+
+</option>
+
+<option value="Bridal Beauty">
+Bridal Beauty — $120+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Date
+</label>
+
+<input
+id="appointmentDate"
+type="date"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Available Time
+</label>
+
+<select
+id="appointmentTime"
+required>
+
+<option value="">
+Choose a date first
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+Notes
+</label>
+
+<textarea
+id="notes"
+placeholder="Anything we should know?"></textarea>
+
+</div>
+
+
+</div>
+
+
+<button
+class="btn btn-gold submit-btn"
+type="submit"
+id="submitBooking">
+
+CONFIRM APPOINTMENT
+
+</button>
+
+
+<div
+id="bookingMessage"
+class="booking-message">
+</div>
+
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer id="contact">
+
+<div class="footer-grid">
+
+
+<div>
+
+<div class="footer-logo">
+AURA<span>SOL</span>
+</div>
+
+<p class="footer-about">
+A modern beauty sanctuary where
+elegance, confidence and self-care
+come together.
+</p>
+
+</div>
+
+
+<div>
+
+<h4>
+EXPLORE
+</h4>
+
+<ul>
+
+<li>
+<a href="#home">Home</a>
+</li>
+
+<li>
+<a href="#services">Services</a>
+</li>
+
+<li>
+<a href="#about">About</a>
+</li>
+
+<li>
+<a href="#booking">Book</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<div>
+
+<h4>
+CONTACT
+</h4>
+
+<ul>
+
+<li>
++1 234 567 890
+</li>
+
+<li>
+hello@aurasol.com
+</li>
+
+<li>
+Beauty District
+</li>
+
+</ul>
+
+</div>
+
+
+<div>
+
+<h4>
+FOLLOW
+</h4>
+
+<ul>
+
+<li>
+<a href="#">Instagram</a>
+</li>
+
+<li>
+<a href="#">TikTok</a>
+</li>
+
+<li>
+<a href="#">Facebook</a>
+</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 AURASOL BEAUTY & WELLNESS.
+ALL RIGHTS RESERVED.
+
+</div>
+
+</footer>
+
+
+<!-- =====================================================
+     FIREBASE BOOKING SYSTEM
+===================================================== -->
+
+<script type="module">
+
+/*
+==========================================================
+IMPORTANT
+
+Create a Firebase project and replace the values below
+with YOUR Firebase Web App configuration.
+
+The booking system uses Firestore to store appointments.
+==========================================================
+*/
+
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    query,
+    where,
+    getDocs,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+
+
+/* ========================================================
+   FIREBASE CONFIGURATION
+======================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "YOUR_API_KEY",
+
+    authDomain:
+        "YOUR_PROJECT.firebaseapp.com",
+
+    projectId:
+        "YOUR_PROJECT_ID",
+
+    storageBucket:
+        "YOUR_PROJECT.firebasestorage.app",
+
+    messagingSenderId:
+        "YOUR_MESSAGING_SENDER_ID",
+
+    appId:
+        "YOUR_APP_ID"
+
+};
+
+
+/* ========================================================
+   INITIALIZE FIREBASE
+======================================================== */
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* ========================================================
+   ELEMENTS
+======================================================== */
+
+const bookingForm =
+    document.getElementById(
+        "bookingForm"
+    );
+
+
+const dateInput =
+    document.getElementById(
+        "appointmentDate"
+    );
+
+
+const timeSelect =
+    document.getElementById(
+        "appointmentTime"
+    );
+
+
+const submitButton =
+    document.getElementById(
+        "submitBooking"
+    );
+
+
+const message =
+    document.getElementById(
+        "bookingMessage"
+    );
+
+
+
+/* ========================================================
+   BUSINESS HOURS
+======================================================== */
+
+const businessHours = {
+
+    0: {
+        start: "11:00",
+        end: "18:00"
+    },
+
+    1: {
+        start: "09:00",
+        end: "20:00"
+    },
+
+    2: {
+        start: "09:00",
+        end: "20:00"
+    },
+
+    3: {
+        start: "09:00",
+        end: "20:00"
+    },
+
+    4: {
+        start: "09:00",
+        end: "20:00"
+    },
+
+    5: {
+        start: "09:00",
+        end: "20:00"
+    },
+
+    6: {
+        start: "09:00",
+        end: "20:00"
+    }
+
+};
+
+
+const interval =
+    60;
+
+
+
+/* ========================================================
+   MINIMUM DATE
+======================================================== */
+
+const today =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+dateInput.min =
+    today;
+
+
+
+/* ========================================================
+   TIME FUNCTIONS
+======================================================== */
+
+function timeToMinutes(time) {
+
+    const parts =
+        time.split(":");
+
+    return (
+        Number(parts[0]) * 60 +
+        Number(parts[1])
+    );
+
+}
+
+
+function minutesToTime(minutes) {
+
+    const hours =
+        Math.floor(minutes / 60);
+
+    const mins =
+        minutes % 60;
+
+    return (
+        String(hours).padStart(2,"0")
+        +
+        ":"
+        +
+        String(mins).padStart(2,"0")
+    );
+
+}
+
+
+function displayTime(time) {
+
+    const parts =
+        time.split(":");
+
+    let hour =
+        Number(parts[0]);
+
+    const minute =
+        parts[1];
+
+    const suffix =
+        hour >= 12
+        ? "PM"
+        : "AM";
+
+    hour =
+        hour % 12 || 12;
+
+    return (
+        hour +
+        ":" +
+        minute +
+        " " +
+        suffix
+    );
+
+}
+
+
+
+/* ========================================================
+   GENERATE TIME SLOTS
+======================================================== */
+
+async function generateTimes() {
+
+    const dateValue =
+        dateInput.value;
+
+
+    timeSelect.innerHTML =
+        "";
+
+
+    if (!dateValue) {
+
+        timeSelect.innerHTML =
+            `
+            <option value="">
+                Choose a date first
+            </option>
+            `;
+
+        return;
+
+    }
+
+
+    const date =
+        new Date(
+            dateValue +
+            "T00:00:00"
+        );
+
+
+    const day =
+        date.getDay();
+
+
+    const hours =
+        businessHours[day];
+
+
+    if (!hours) {
+
+        timeSelect.innerHTML =
+            `
+            <option value="">
+                Closed
+            </option>
+            `;
+
+        return;
+
+    }
+
+
+    let current =
+        timeToMinutes(
+            hours.start
+        );
+
+
+    const end =
+        timeToMinutes(
+            hours.end
+        );
+
+
+    while (current < end) {
+
+        const time =
+            minutesToTime(
+                current
+            );
+
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            time;
+
+
+        option.textContent =
+            displayTime(time);
+
+
+        timeSelect.appendChild(
+            option
+        );
+
+
+        current += interval;
+
+    }
+
+
+    await disableBookedTimes();
+
+}
+
+
+
+/* ========================================================
+   DISABLE BOOKED TIMES
+======================================================== */
+
+async function disableBookedTimes() {
+
+    if (!dateInput.value) {
+        return;
+    }
+
+
+    try {
+
+        const bookings =
+            collection(
+                db,
+                "bookings"
+            );
+
+
+        const q =
+            query(
+                bookings,
+
+                where(
+                    "appointmentDate",
+                    "==",
+                    dateInput.value
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        const booked =
+            [];
+
+
+        snapshot.forEach(
+            item => {
+
+                const data =
+                    item.data();
+
+
+                if (
+                    data.status !==
+                    "cancelled"
+                ) {
+
+                    booked.push(
+                        data.appointmentTime
+                    );
+
+                }
+
+            }
+        );
+
+
+        Array.from(
+            timeSelect.options
+        ).forEach(
+            option => {
+
+                if (
+                    booked.includes(
+                        option.value
+                    )
+                ) {
+
+                    option.disabled =
+                        true;
+
+
+                    option.textContent =
+                        displayTime(
+                            option.value
+                        ) +
+                        " — BOOKED";
+
+                }
+
+            }
+        );
+
+
+    } catch(error) {
+
+        console.error(
+            "Availability error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* ========================================================
+   DATE CHANGE
+======================================================== */
+
+dateInput.addEventListener(
+    "change",
+    generateTimes
+);
+
+
+
+/* ========================================================
+   SHOW MESSAGE
+======================================================== */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "booking-message " +
+        type;
+
+}
+
+
+
+/* ========================================================
+   BOOKING SUBMISSION
+======================================================== */
+
+bookingForm.addEventListener(
+    "submit",
+
+    async event => {
+
+        event.preventDefault();
+
+
+        const name =
+            document
+            .getElementById(
+                "customerName"
+            )
+            .value
+            .trim();
+
+
+        const email =
+            document
+            .getElementById(
+                "customerEmail"
+            )
+            .value
+            .trim();
+
+
+        const phone =
+            document
+            .getElementById(
+                "customerPhone"
+            )
+            .value
+            .trim();
+
+
+        const service =
+            document
+            .getElementById(
+                "service"
+            )
+            .value;
+
+
+        const date =
+            dateInput.value;
+
+
+        const time =
+            timeSelect.value;
+
+
+        const notes =
+            document
+            .getElementById(
+                "notes"
+            )
+            .value
+            .trim();
+
+
+
+        /* ================================================
+           VALIDATION
+        ================================================= */
+
+        if (
+            !name ||
+            !email ||
+            !phone ||
+            !service ||
+            !date ||
+            !time
+        ) {
+
+            showMessage(
+                "Please complete all required fields.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+
+        submitButton.disabled =
+            true;
+
+
+        submitButton.textContent =
+            "CHECKING AVAILABILITY...";
+
+
+
+        try {
+
+
+            /* ============================================
+               DOUBLE-CHECK AVAILABILITY
+            ============================================ */
+
+            const bookings =
+                collection(
+                    db,
+                    "bookings"
+                );
+
+
+            const q =
+                query(
+                    bookings,
+
+                    where(
+                        "appointmentDate",
+                        "==",
+                        date
+                    ),
+
+                    where(
+                        "appointmentTime",
+                        "==",
+                        time
+                    )
+                );
+
+
+            const snapshot =
+                await getDocs(q);
+
+
+            let alreadyBooked =
+                false;
+
+
+            snapshot.forEach(
+                item => {
+
+                    const booking =
+                        item.data();
+
+
+                    if (
+                        booking.status !==
+                        "cancelled"
+                    ) {
+
+                        alreadyBooked =
+                            true;
+
+                    }
+
+                }
+            );
+
+
+            if (
+                alreadyBooked
+            ) {
+
+                showMessage(
+                    "Sorry, this time has already been booked. Please choose another time.",
+                    "error"
+                );
+
+
+                await disableBookedTimes();
+
+                return;
+
+            }
+
+
+
+            /* ============================================
+               BOOKING REFERENCE
+            ============================================ */
+
+            const reference =
+                "AURA-" +
+                Math
+                .random()
+                .toString(36)
+                .substring(
+                    2,
+                    8
+                )
+                .toUpperCase();
+
+
+
+            /* ============================================
+               SAVE BOOKING
+            ============================================ */
+
+            submitButton.textContent =
+                "CREATING BOOKING...";
+
+
+            await addDoc(
+
+                bookings,
+
+                {
+
+                    bookingReference:
+                        reference,
+
+                    customerName:
+                        name,
+
+                    customerEmail:
+                        email,
+
+                    customerPhone:
+                        phone,
+
+                    service:
+                        service,
+
+                    appointmentDate:
+                        date,
+
+                    appointmentTime:
+                        time,
+
+                    notes:
+                        notes,
+
+                    status:
+                        "pending",
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+
+            );
+
+
+
+            /* ============================================
+               SUCCESS
+            ============================================ */
+
+            showMessage(
+
+                "✨ Your AURASOL appointment has been requested!\n\n" +
+
+                "Booking Reference: " +
+                reference +
+
+                "\n\nDate: " +
+                date +
+
+                "\nTime: " +
+                displayTime(time) +
+
+                "\nService: " +
+                service +
+
+                "\n\nYour appointment is currently PENDING confirmation.",
+
+                "success"
+
+            );
+
+
+            bookingForm.reset();
+
+
+            timeSelect.innerHTML =
+                `
+                <option value="">
+                    Choose a date first
+                </option>
+                `;
+
+
+
+        } catch(error) {
+
+            console.error(
+                error
+            );
+
+
+            showMessage(
+                "Something went wrong while creating your appointment. Please try again.",
+                "error"
+            );
+
+
+        } finally {
+
+            submitButton.disabled =
+                false;
+
+
+            submitButton.textContent =
+                "CONFIRM APPOINTMENT";
+
+        }
+
+    }
+
+);
+
+
+
+/* ========================================================
+   MOBILE MENU
+======================================================== */
+
+const menuButton =
+    document.getElementById(
+        "menuBtn"
+    );
+
+
+const nav =
+    document.getElementById(
+        "navLinks"
+    );
+
+
+menuButton.addEventListener(
+    "click",
+    () => {
+
+        nav.classList.toggle(
+            "active"
+        );
+
+    }
+);
+
+
+document
+.querySelectorAll(
+    ".nav-links a"
+)
+.forEach(
+    link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                nav.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+
+/* ========================================================
+   HEADER SCROLL EFFECT
+======================================================== */
+
+const header =
+    document.getElementById(
+        "header"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (
+            window.scrollY > 50
+        ) {
+
+            header.classList.add(
+                "scrolled"
+            );
+
+        } else {
+
+            header.classList.remove(
+                "scrolled"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* ========================================================
+   SCROLL ANIMATIONS
+======================================================== */
+
+const animated =
+    document.querySelectorAll(
+        ".fade-up"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add(
+                                "show"
+                            );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: .15
+        }
+
+    );
+
+
+animated.forEach(
+    element => {
+
+        observer.observe(
+            element
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
