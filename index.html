@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="pageRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AURASOL | Beauty & Wellness</title>
+<title id="pageTitle">AURASOL | Beauty & Wellness</title>
 
 <meta name="description"
 content="AURASOL Beauty & Wellness Salon — elegance, beauty and self-care.">
@@ -979,6 +979,116 @@ footer a:hover {
 
 
 /* =========================================================
+   LANGUAGE SWITCHER
+========================================================= */
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    margin-right: 22px;
+    white-space: nowrap;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 5px 2px;
+    transition: .3s;
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+    color: var(--gold-light);
+}
+
+.lang-divider {
+    color: rgba(255,255,255,.55);
+    font-size: 11px;
+}
+
+header.scrolled .lang-btn {
+    color: var(--dark);
+}
+
+header.scrolled .lang-btn:hover,
+header.scrolled .lang-btn.active {
+    color: var(--gold);
+}
+
+header.scrolled .lang-divider {
+    color: rgba(44,32,37,.45);
+}
+
+/* Arabic / RTL layout */
+html[dir="rtl"] body {
+    direction: rtl;
+}
+
+html[dir="rtl"] .hero-content {
+    padding-left: 0;
+    padding-right: 8%;
+    text-align: right;
+}
+
+html[dir="rtl"] .hero h1 span {
+    margin-left: 0;
+    margin-right: 80px;
+}
+
+html[dir="rtl"] .scroll-down {
+    left: auto;
+    right: 8%;
+}
+
+html[dir="rtl"] .about-list li::before {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+html[dir="rtl"] .price-card {
+    text-align: right;
+}
+
+html[dir="rtl"] .booking-info,
+html[dir="rtl"] .booking-form {
+    text-align: right;
+}
+
+html[dir="rtl"] .form-group label {
+    text-align: right;
+}
+
+html[dir="rtl"] .price-card li::before {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+html[dir="rtl"] .language-switcher {
+    margin-left: 22px;
+    margin-right: auto;
+}
+
+@media(max-width: 950px) {
+    .language-switcher {
+        margin-left: auto;
+        margin-right: 18px;
+    }
+
+    html[dir="rtl"] .language-switcher {
+        margin-left: 18px;
+        margin-right: auto;
+    }
+}
+
+/* =========================================================
    RESPONSIVE
 ========================================================= */
 
@@ -1148,6 +1258,12 @@ footer a:hover {
 </li>
 
 </ul>
+
+<div class="language-switcher" aria-label="Language selector">
+    <button type="button" class="lang-btn active" data-lang="en">EN</button>
+    <span class="lang-divider">|</span>
+    <button type="button" class="lang-btn" data-lang="ar">العربية</button>
+</div>
 
 <a href="#booking" class="nav-button">
 BOOK NOW
@@ -2510,6 +2626,10 @@ async function generateTimes() {
     }
 
 
+    updateDynamicTranslations(
+        localStorage.getItem("aurasol-language") || "en"
+    );
+
     await disableBookedTimes();
 
 }
@@ -2597,7 +2717,7 @@ async function disableBookedTimes() {
                         displayTime(
                             option.value
                         ) +
-                        " — BOOKED";
+                        " — " + (localStorage.getItem("aurasol-language") === "ar" ? "محجوز" : "BOOKED");
 
                 }
 
@@ -2627,6 +2747,40 @@ dateInput.addEventListener(
     generateTimes
 );
 
+
+
+/* ========================================================
+   BOOKING SYSTEM MESSAGES
+======================================================== */
+
+const bookingMessages = {
+    en: {
+        required: "Please complete all required fields.",
+        checking: "CHECKING AVAILABILITY...",
+        booked: "Sorry, this time has already been booked. Please choose another time.",
+        creating: "CREATING BOOKING...",
+        successStart: "✨ Your AURASOL appointment has been requested!",
+        pending: "Your appointment is currently PENDING confirmation.",
+        error: "Something went wrong while creating your appointment. Please try again."
+    },
+    ar: {
+        required: "يرجى إكمال جميع الحقول المطلوبة.",
+        checking: "جارٍ التحقق من التوفر...",
+        booked: "عذراً، هذا الوقت محجوز بالفعل. يرجى اختيار وقت آخر.",
+        creating: "جارٍ إنشاء الحجز...",
+        successStart: "✨ تم إرسال طلب موعدكِ لدى AURASOL!",
+        pending: "موعدكِ حالياً قيد انتظار التأكيد.",
+        error: "حدث خطأ أثناء إنشاء موعدكِ. يرجى المحاولة مرة أخرى."
+    }
+};
+
+function currentLang() {
+    return localStorage.getItem("aurasol-language") || "en";
+}
+
+function bm(key) {
+    return bookingMessages[currentLang()][key];
+}
 
 
 /* ========================================================
@@ -2728,7 +2882,7 @@ bookingForm.addEventListener(
         ) {
 
             showMessage(
-                "Please complete all required fields.",
+                bm("required"),
                 "error"
             );
 
@@ -2743,7 +2897,7 @@ bookingForm.addEventListener(
 
 
         submitButton.textContent =
-            "CHECKING AVAILABILITY...";
+            bm("checking");
 
 
 
@@ -2813,7 +2967,7 @@ bookingForm.addEventListener(
             ) {
 
                 showMessage(
-                    "Sorry, this time has already been booked. Please choose another time.",
+                    bm("booked"),
                     "error"
                 );
 
@@ -2848,7 +3002,7 @@ bookingForm.addEventListener(
             ============================================ */
 
             submitButton.textContent =
-                "CREATING BOOKING...";
+                bm("creating");
 
 
             await addDoc(
@@ -2899,21 +3053,9 @@ bookingForm.addEventListener(
 
             showMessage(
 
-                "✨ Your AURASOL appointment has been requested!\n\n" +
-
-                "Booking Reference: " +
-                reference +
-
-                "\n\nDate: " +
-                date +
-
-                "\nTime: " +
-                displayTime(time) +
-
-                "\nService: " +
-                service +
-
-                "\n\nYour appointment is currently PENDING confirmation.",
+                currentLang() === "ar"
+                    ? bm("successStart") + "\n\nمرجع الحجز: " + reference + "\n\nالتاريخ: " + date + "\nالوقت: " + displayTime(time) + "\nالخدمة: " + service + "\n\n" + bm("pending")
+                    : bm("successStart") + "\n\nBooking Reference: " + reference + "\n\nDate: " + date + "\nTime: " + displayTime(time) + "\nService: " + service + "\n\n" + bm("pending"),
 
                 "success"
 
@@ -2940,7 +3082,7 @@ bookingForm.addEventListener(
 
 
             showMessage(
-                "Something went wrong while creating your appointment. Please try again.",
+                bm("error"),
                 "error"
             );
 
@@ -2952,7 +3094,7 @@ bookingForm.addEventListener(
 
 
             submitButton.textContent =
-                "CONFIRM APPOINTMENT";
+                currentLang() === "ar" ? "تأكيد الموعد" : "CONFIRM APPOINTMENT";
 
         }
 
@@ -2960,6 +3102,370 @@ bookingForm.addEventListener(
 
 );
 
+
+
+/* ========================================================
+   LANGUAGE / TRANSLATION SYSTEM
+======================================================== */
+
+const translations = {
+    "en": {
+        "Home": "Home",
+        "Services": "Services",
+        "About": "About",
+        "Packages": "Packages",
+        "Gallery": "Gallery",
+        "Book": "Book",
+        "BOOK NOW": "BOOK NOW",
+        "BEAUTY • WELLNESS • YOU": "BEAUTY • WELLNESS • YOU",
+        "Your": "Your",
+        "Aura.": "Aura.",
+        "Welcome to AURASOL, a luxury beauty sanctuary created to make you feel confident, refreshed, and beautifully yourself.": "Welcome to AURASOL, a luxury beauty sanctuary created to make you feel confident, refreshed, and beautifully yourself.",
+        "BOOK YOUR VISIT": "BOOK YOUR VISIT",
+        "EXPLORE SERVICES": "EXPLORE SERVICES",
+        "↓   DISCOVER AURASOL": "↓   DISCOVER AURASOL",
+        "WELCOME TO AURASOL": "WELCOME TO AURASOL",
+        "Beauty that feels like you.": "Beauty that feels like you.",
+        "At AURASOL, beauty is more than appearance. It's confidence, self-care, and taking a moment to feel completely yourself.": "At AURASOL, beauty is more than appearance. It's confidence, self-care, and taking a moment to feel completely yourself.",
+        "OUR SERVICES": "OUR SERVICES",
+        "Designed for your glow.": "Designed for your glow.",
+        "Hair Studio": "Hair Studio",
+        "Personalized cuts, styling, treatments and beautiful transformations.": "Personalized cuts, styling, treatments and beautiful transformations.",
+        "FROM $35": "FROM $35",
+        "Nail Atelier": "Nail Atelier",
+        "Elegant manicures, detailed nail art, gel finishes and relaxing hand treatments.": "Elegant manicures, detailed nail art, gel finishes and relaxing hand treatments.",
+        "FROM 25sar": "FROM 25sar",
+        "Skin Rituals": "Skin Rituals",
+        "Rejuvenating facials and skincare rituals designed for a fresh natural glow.": "Rejuvenating facials and skincare rituals designed for a fresh natural glow.",
+        "FROM 45sar": "FROM 45sar",
+        "Lashes & Brows": "Lashes & Brows",
+        "Brow shaping, tinting, lash lifts and subtle enhancements.": "Brow shaping, tinting, lash lifts and subtle enhancements.",
+        "FROM 30sar": "FROM 30sar",
+        "Relaxation": "Relaxation",
+        "Calming treatments created to help you reset and recharge.": "Calming treatments created to help you reset and recharge.",
+        "FROM 50sar": "FROM 50sar",
+        "Bridal Beauty": "Bridal Beauty",
+        "Complete beauty preparation packages for special occasions.": "Complete beauty preparation packages for special occasions.",
+        "FROM 120sar": "FROM 120sar",
+        "OUR STORY": "OUR STORY",
+        "A space made for you.": "A space made for you.",
+        "AURASOL was created around one simple idea: everyone deserves a place where they can slow down, relax, and leave feeling amazing.": "AURASOL was created around one simple idea: everyone deserves a place where they can slow down, relax, and leave feeling amazing.",
+        "Every detail is designed to create a warm, elegant and relaxing experience.": "Every detail is designed to create a warm, elegant and relaxing experience.",
+        "Personalized beauty experiences": "Personalized beauty experiences",
+        "Professional salon specialists": "Professional salon specialists",
+        "Relaxing luxury environment": "Relaxing luxury environment",
+        "Quality treatments": "Quality treatments",
+        "Years of Beauty": "Years of Beauty",
+        "Happy Clients": "Happy Clients",
+        "Beauty Treatments": "Beauty Treatments",
+        "Client Rating": "Client Rating",
+        "SIGNATURE PACKAGES": "SIGNATURE PACKAGES",
+        "Choose your ritual.": "Choose your ritual.",
+        "Essential Glow": "Essential Glow",
+        "Signature Blowout": "Signature Blowout",
+        "Express Facial": "Express Facial",
+        "Classic Manicure": "Classic Manicure",
+        "Refreshment": "Refreshment",
+        "SELECT": "SELECT",
+        "MOST LOVED": "MOST LOVED",
+        "Aurasol Signature": "Aurasol Signature",
+        "Luxury Hair Styling": "Luxury Hair Styling",
+        "Signature Facial": "Signature Facial",
+        "Gel Manicure": "Gel Manicure",
+        "Lash & Brow Styling": "Lash & Brow Styling",
+        "Relaxation Ritual": "Relaxation Ritual",
+        "Golden Occasion": "Golden Occasion",
+        "Full Hair Styling": "Full Hair Styling",
+        "Luxury Facial": "Luxury Facial",
+        "Premium Manicure": "Premium Manicure",
+        "Lash Enhancement": "Lash Enhancement",
+        "Occasion Makeup": "Occasion Makeup",
+        "AURASOL SPACE": "AURASOL SPACE",
+        "HAIR": "HAIR",
+        "NAILS": "NAILS",
+        "SKIN": "SKIN",
+        "CLIENT LOVE": "CLIENT LOVE",
+        "Words from our glow girls.": "Words from our glow girls.",
+        "“AURASOL feels like stepping into a little luxury escape. I always leave feeling refreshed.”": "“AURASOL feels like stepping into a little luxury escape. I always leave feeling refreshed.”",
+        "“The atmosphere is beautiful and the attention to detail is incredible. My favorite salon.”": "“The atmosphere is beautiful and the attention to detail is incredible. My favorite salon.”",
+        "“Everything feels thoughtful and personal. It is the perfect place for a self-care day.”": "“Everything feels thoughtful and personal. It is the perfect place for a self-care day.”",
+        "RESERVATIONS": "RESERVATIONS",
+        "Your glow starts here.": "Your glow starts here.",
+        "Choose your treatment, select a date, find an available time and request your appointment.": "Choose your treatment, select a date, find an available time and request your appointment.",
+        "LOCATION": "LOCATION",
+        "24 Rose Avenue, Beauty District": "24 Rose Avenue, Beauty District",
+        "OPENING HOURS": "OPENING HOURS",
+        "Monday – Saturday: 9:00 AM – 8:00 PM": "Monday – Saturday: 9:00 AM – 8:00 PM",
+        "Sunday: 11:00 AM – 6:00 PM": "Sunday: 11:00 AM – 6:00 PM",
+        "PHONE": "PHONE",
+        "Book an Appointment": "Book an Appointment",
+        "Full Name": "Full Name",
+        "Email": "Email",
+        "Phone": "Phone",
+        "Service": "Service",
+        "Choose a service": "Choose a service",
+        "Date": "Date",
+        "Available Time": "Available Time",
+        "Choose a date first": "Choose a date first",
+        "Notes": "Notes",
+        "Anything we should know?": "Anything we should know?",
+        "CONFIRM APPOINTMENT": "CONFIRM APPOINTMENT",
+        "A modern beauty sanctuary where elegance, confidence and self-care come together.": "A modern beauty sanctuary where elegance, confidence and self-care come together.",
+        "EXPLORE": "EXPLORE",
+        "CONTACT": "CONTACT",
+        "FOLLOW": "FOLLOW",
+        "Instagram": "Instagram",
+        "TikTok": "TikTok",
+        "Facebook": "Facebook",
+        "Beauty District": "Beauty District",
+        "© 2026 AURASOL BEAUTY & WELLNESS. ALL RIGHTS RESERVED.": "© 2026 AURASOL BEAUTY & WELLNESS. ALL RIGHTS RESERVED.",
+        "Your name": "Your name",
+        "you@email.com": "you@email.com",
+        "Phone number": "Phone number",
+        "Hair Studio — $35+": "Hair Studio — $35+",
+        "Nail Atelier — $25+": "Nail Atelier — $25+",
+        "Skin Rituals — $45+": "Skin Rituals — $45+",
+        "Lashes & Brows — $30+": "Lashes & Brows — $30+",
+        "Relaxation — $50+": "Relaxation — $50+",
+        "Bridal Beauty — $120+": "Bridal Beauty — $120+"
+    },
+    "ar": {
+        "Home": "الرئيسية",
+        "Services": "الخدمات",
+        "About": "من نحن",
+        "Packages": "الباقات",
+        "Gallery": "المعرض",
+        "Book": "الحجز",
+        "BOOK NOW": "احجزي الآن",
+        "BEAUTY • WELLNESS • YOU": "الجمال • العافية • أنتِ",
+        "Your": "جمالكِ",
+        "Aura.": "هالتكِ.",
+        "Welcome to AURASOL, a luxury beauty sanctuary created to make you feel confident, refreshed, and beautifully yourself.": "مرحباً بكِ في AURASOL، ملاذ فاخر للجمال صُمم ليمنحكِ الثقة والانتعاش والشعور بجمالكِ الحقيقي.",
+        "BOOK YOUR VISIT": "احجزي موعدكِ",
+        "EXPLORE SERVICES": "اكتشفي خدماتنا",
+        "↓   DISCOVER AURASOL": "↓   اكتشفي AURASOL",
+        "WELCOME TO AURASOL": "مرحباً بكِ في AURASOL",
+        "Beauty that feels like you.": "جمال يشبهكِ.",
+        "At AURASOL, beauty is more than appearance. It's confidence, self-care, and taking a moment to feel completely yourself.": "في AURASOL، الجمال أكثر من مجرد مظهر. إنه ثقة بالنفس، وعناية ذاتية، ووقت تأخذينه لتشعري بأنكِ على طبيعتكِ تماماً.",
+        "OUR SERVICES": "خدماتنا",
+        "Designed for your glow.": "مصممة لإبراز إشراقتكِ.",
+        "Hair Studio": "استوديو الشعر",
+        "Personalized cuts, styling, treatments and beautiful transformations.": "قصات وتصفيفات وعلاجات مخصصة تمنحكِ إطلالة جميلة ومتجددة.",
+        "FROM $35": "ابتداءً من 35$",
+        "Nail Atelier": "أتيليه الأظافر",
+        "Elegant manicures, detailed nail art, gel finishes and relaxing hand treatments.": "عناية أنيقة بالأظافر، وفن أظافر متقن، وطلاء جل، وعلاجات مريحة لليدين.",
+        "FROM 25sar": "ابتداءً من 25 ريال",
+        "Skin Rituals": "طقوس العناية بالبشرة",
+        "Rejuvenating facials and skincare rituals designed for a fresh natural glow.": "جلسات عناية وتجديد للبشرة مصممة لمنحكِ إشراقة طبيعية ونضرة.",
+        "FROM 45sar": "ابتداءً من 45 ريال",
+        "Lashes & Brows": "الرموش والحواجب",
+        "Brow shaping, tinting, lash lifts and subtle enhancements.": "تشكيل الحواجب وتلوينها، ورفع الرموش، ولمسات جمالية ناعمة.",
+        "FROM 30sar": "ابتداءً من 30 ريال",
+        "Relaxation": "الاسترخاء",
+        "Calming treatments created to help you reset and recharge.": "علاجات هادئة تساعدكِ على الاسترخاء واستعادة نشاطكِ.",
+        "FROM 50sar": "ابتداءً من 50 ريال",
+        "Bridal Beauty": "جمال العروس",
+        "Complete beauty preparation packages for special occasions.": "باقات متكاملة للتحضير الجمالي للمناسبات الخاصة.",
+        "FROM 120sar": "ابتداءً من 120 ريال",
+        "OUR STORY": "قصتنا",
+        "A space made for you.": "مساحة صُممت من أجلكِ.",
+        "AURASOL was created around one simple idea: everyone deserves a place where they can slow down, relax, and leave feeling amazing.": "تأسست AURASOL حول فكرة بسيطة: الجميع يستحق مكاناً يستطيع فيه التمهل والاسترخاء والمغادرة بشعور رائع.",
+        "Every detail is designed to create a warm, elegant and relaxing experience.": "كل تفصيل صُمم ليمنحكِ تجربة دافئة وأنيقة ومريحة.",
+        "Personalized beauty experiences": "تجارب جمالية مخصصة",
+        "Professional salon specialists": "متخصصات محترفات في الصالون",
+        "Relaxing luxury environment": "أجواء فاخرة ومريحة",
+        "Quality treatments": "علاجات عالية الجودة",
+        "Years of Beauty": "سنوات من الجمال",
+        "Happy Clients": "عميلات سعيدات",
+        "Beauty Treatments": "علاجات جمالية",
+        "Client Rating": "تقييم العميلات",
+        "SIGNATURE PACKAGES": "باقاتنا المميزة",
+        "Choose your ritual.": "اختاري طقوسكِ.",
+        "Essential Glow": "الإشراقة الأساسية",
+        "Signature Blowout": "تصفيف الشعر المميز",
+        "Express Facial": "عناية سريعة للوجه",
+        "Classic Manicure": "مانيكير كلاسيكي",
+        "Refreshment": "ضيافة منعشة",
+        "SELECT": "اختيار",
+        "MOST LOVED": "الأكثر طلباً",
+        "Aurasol Signature": "تجربة AURASOL المميزة",
+        "Luxury Hair Styling": "تصفيف شعر فاخر",
+        "Signature Facial": "جلسة عناية مميزة للوجه",
+        "Gel Manicure": "مانيكير جل",
+        "Lash & Brow Styling": "تصفيف الرموش والحواجب",
+        "Relaxation Ritual": "طقوس استرخاء",
+        "Golden Occasion": "المناسبة الذهبية",
+        "Full Hair Styling": "تصفيف شعر متكامل",
+        "Luxury Facial": "عناية فاخرة للوجه",
+        "Premium Manicure": "مانيكير فاخر",
+        "Lash Enhancement": "تعزيز جمال الرموش",
+        "Occasion Makeup": "مكياج للمناسبات",
+        "AURASOL SPACE": "مساحة AURASOL",
+        "HAIR": "الشعر",
+        "NAILS": "الأظافر",
+        "SKIN": "البشرة",
+        "CLIENT LOVE": "آراء العميلات",
+        "Words from our glow girls.": "كلمات من عميلاتنا المتألقات.",
+        "“AURASOL feels like stepping into a little luxury escape. I always leave feeling refreshed.”": '“AURASOL تشبه ملاذاً صغيراً من الفخامة. أغادرها دائماً وأنا أشعر بالانتعاش.”',
+        "“The atmosphere is beautiful and the attention to detail is incredible. My favorite salon.”": '“الأجواء جميلة والاهتمام بالتفاصيل مذهل. إنه صالوني المفضل.”',
+        "“Everything feels thoughtful and personal. It is the perfect place for a self-care day.”": '“كل شيء يبدو مدروساً وشخصياً. إنه المكان المثالي ليوم من العناية بالنفس.”',
+        "RESERVATIONS": "الحجوزات",
+        "Your glow starts here.": "إشراقتكِ تبدأ من هنا.",
+        "Choose your treatment, select a date, find an available time and request your appointment.": "اختاري علاجكِ، وحددي التاريخ، واختاري الوقت المتاح، ثم أرسلي طلب موعدكِ.",
+        "LOCATION": "الموقع",
+        "24 Rose Avenue, Beauty District": "24 شارع روز، حي الجمال",
+        "OPENING HOURS": "ساعات العمل",
+        "Monday – Saturday: 9:00 AM – 8:00 PM": "الاثنين – السبت: 9:00 صباحاً – 8:00 مساءً",
+        "Sunday: 11:00 AM – 6:00 PM": "الأحد: 11:00 صباحاً – 6:00 مساءً",
+        "PHONE": "الهاتف",
+        "Book an Appointment": "احجزي موعداً",
+        "Full Name": "الاسم الكامل",
+        "Email": "البريد الإلكتروني",
+        "Phone": "رقم الهاتف",
+        "Service": "الخدمة",
+        "Choose a service": "اختاري خدمة",
+        "Date": "التاريخ",
+        "Available Time": "الوقت المتاح",
+        "Choose a date first": "اختاري التاريخ أولاً",
+        "Notes": "ملاحظات",
+        "Anything we should know?": "هل هناك أي شيء نحتاج إلى معرفته؟",
+        "CONFIRM APPOINTMENT": "تأكيد الموعد",
+        "A modern beauty sanctuary where elegance, confidence and self-care come together.": "ملاذ عصري للجمال تجتمع فيه الأناقة والثقة والعناية بالنفس.",
+        "EXPLORE": "استكشفي",
+        "CONTACT": "تواصل معنا",
+        "FOLLOW": "تابعينا",
+        "Instagram": "إنستغرام",
+        "TikTok": "تيك توك",
+        "Facebook": "فيسبوك",
+        "Beauty District": "حي الجمال",
+        "© 2026 AURASOL BEAUTY & WELLNESS. ALL RIGHTS RESERVED.": "© 2026 AURASOL للجمال والعافية. جميع الحقوق محفوظة.",
+        "Your name": "اسمكِ",
+        "you@email.com": "you@email.com",
+        "Phone number": "رقم الهاتف",
+        "Hair Studio — $35+": "استوديو الشعر — 35$+",
+        "Nail Atelier — $25+": "أتيليه الأظافر — 25 ريال+",
+        "Skin Rituals — $45+": "طقوس العناية بالبشرة — 45 ريال+",
+        "Lashes & Brows — $30+": "الرموش والحواجب — 30 ريال+",
+        "Relaxation — $50+": "الاسترخاء — 50 ريال+",
+        "Bridal Beauty — $120+": "جمال العروس — 120 ريال+"
+    }
+};
+
+const originalText = new WeakMap();
+const originalAttrs = new WeakMap();
+
+function normalizeText(value) {
+    return value.replace(/\s+/g, " ").trim();
+}
+
+function translatePage(lang) {
+    const dict = translations[lang];
+    const root = document.documentElement;
+
+    root.lang = lang;
+    root.dir = lang === "ar" ? "rtl" : "ltr";
+    document.body.classList.toggle("rtl", lang === "ar");
+
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {
+            acceptNode(node) {
+                const parent = node.parentElement;
+                if (!parent || ["SCRIPT", "STYLE"].includes(parent.tagName)) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+                return normalizeText(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+            }
+        }
+    );
+
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(node => {
+        if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+        const enText = normalizeText(originalText.get(node));
+        const translated = dict[enText];
+        if (translated !== undefined) {
+            const source = originalText.get(node);
+            const leading = source.match(/^\s*/)?.[0] || "";
+            const trailing = source.match(/\s*$/)?.[0] || "";
+            node.nodeValue = leading + translated + trailing;
+        }
+    });
+
+    const attrMap = {
+        placeholder: {
+            "Your name": "اسمكِ",
+            "you@email.com": "you@email.com",
+            "Phone number": "رقم الهاتف",
+            "Anything we should know?": "هل هناك أي شيء نحتاج إلى معرفته؟"
+        },
+        alt: {
+            "AURASOL salon": "صالون AURASOL",
+            "Beauty treatment": "علاج تجميلي",
+            "Salon interior": "ديكور الصالون",
+            "Hair styling": "تصفيف الشعر",
+            "Nails": "الأظافر",
+            "Facial": "العناية بالوجه"
+        }
+    };
+
+    document.querySelectorAll("input, textarea, img").forEach(el => {
+        ["placeholder", "alt"].forEach(attr => {
+            if (!el.hasAttribute(attr)) return;
+            if (!originalAttrs.has(el)) originalAttrs.set(el, {});
+            const attrs = originalAttrs.get(el);
+            if (attrs[attr] === undefined) attrs[attr] = el.getAttribute(attr);
+            const original = attrs[attr];
+            if (lang === "ar" && attrMap[attr][original]) {
+                el.setAttribute(attr, attrMap[attr][original]);
+            } else {
+                el.setAttribute(attr, original);
+            }
+        });
+    });
+
+    const titleEn = "AURASOL | Beauty & Wellness";
+    const titleAr = "AURASOL | الجمال والعافية";
+    document.title = lang === "ar" ? titleAr : titleEn;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+        metaDescription.content = lang === "ar"
+            ? "صالون AURASOL للجمال والعافية — أناقة وجمال وعناية بالنفس."
+            : "AURASOL Beauty & Wellness Salon — elegance, beauty and self-care.";
+    }
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+        btn.setAttribute("aria-pressed", btn.dataset.lang === lang ? "true" : "false");
+    });
+
+    localStorage.setItem("aurasol-language", lang);
+}
+
+function setLanguage(lang) {
+    translatePage(lang);
+    // Re-translate dynamically generated booking options and messages.
+    if (typeof updateDynamicTranslations === "function") updateDynamicTranslations(lang);
+}
+
+function updateDynamicTranslations(lang) {
+    const dict = translations[lang];
+    document.querySelectorAll("#service option, #appointmentTime option").forEach(option => {
+        if (!option.dataset.enText) option.dataset.enText = option.textContent;
+        const en = normalizeText(option.dataset.enText);
+        if (dict[en]) option.textContent = dict[en];
+    });
+}
+
+document.querySelectorAll(".lang-btn").forEach(button => {
+    button.addEventListener("click", () => setLanguage(button.dataset.lang));
+});
+
+const savedLanguage = localStorage.getItem("aurasol-language") || "en";
+setLanguage(savedLanguage);
 
 
 /* ========================================================
